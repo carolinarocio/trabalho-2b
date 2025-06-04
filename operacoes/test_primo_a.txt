@@ -1,0 +1,7 @@
+1: ZER A 100 2  # SE A = 0 ENTAO FALSO
+2: ZER C 5 3    # C := A
+3: SUB C 4      # C := A
+4: ADD A 2      # C := A
+5: SUB C 4      # C := C - 1
+6: ZER C 100 7  # SE C = 0 ENTAO VERDADEIRO
+7:              # SENAO ATE TESTE_MOD(A,C)

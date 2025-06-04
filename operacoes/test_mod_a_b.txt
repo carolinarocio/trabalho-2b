@@ -1,0 +1,97 @@
+C := A usando E;
+se B = 0
+então falso
+se não
+	se A = 0
+	então verdadeiro
+	senão até que C < B usando F, G, H
+		faça C := C - D usando E;
+	
+	se C = 0
+	então verdadeiro
+	senão falso
+
+
+# Transferir A pra C usando E
+1: ZER A 5 2
+2: ADD C 3
+3: ADD E 4
+4: SUB A 1
+5: ZER E 8 6
+6: ADD A 7
+7: SUB E 5
+
+# Se B = 0, então falso, se não
+8: ZER B 100 9
+
+# Se A = 0, então verdadeiro, se não
+
+9: ZER A 10 11
+
+# VERDADEIRO
+10: ADD E 100
+
+F := C usando H;
+G := B usando H;
+até que F = 0
+faça
+	se G = 0
+	então falso
+	senão f--; g--;
+se f = falso
+então falso
+se não verdadeiro
+
+# até que C < B usando F, G, H
+
+## Transferir C para F usando H
+11: ZER C 15 12
+12: ADD F 13
+13: ADD H 14
+14: SUB C 11
+15: ZER H 18 16
+16: ADD C 17
+17: SUB H 15
+
+## Transferir B para G usando H
+18: ZER B 22 19
+19: ADD G 20
+20: ADD H 21
+21: SUB B 18
+22: ZER H 25 23
+23: ADD C 24
+24: SUB H 22
+
+## até f = 0, faça
+25: ZER F 29 26
+
+### se G for zero, falso. se não, f--, g--
+26: ZER G 31 27
+27: SUB F 28
+28: SUB G 25
+
+### se f falso, então falso, se não verdadeiro
+29: ZER F 31 30
+30: ADD H 31
+
+## Verifica saída do loop interno. Se h = 0, falso, se não verdadeiro
+31: ZER H 44 32
+
+## LIMPA VALORES DE F, G, H
+32: ZER F 34 33
+33: SUB F 32
+34: ZER G 36 35
+35: SUB G 34
+36: ZER H 38 37
+37: SUB H 36
+
+## Executa operações
+38: ZER D 41 39
+39: SUB C 40
+40: ADD E 38
+41: ZER E 11 42
+42: ADD D 43
+43: SUB E 41
+
+# Se C = 0, então verdadeiro, se não falso
+44: ZER C 10 100
