@@ -4,7 +4,8 @@ from registrador import Registrador
 
 class MaquinaNorma:
     def __init__(self):
-        self.registradores = {chr(65 + i): Registrador() for i in range(8)}  # Dicionário com registradores de A-H
+        # cria 8 registradores nomeados de A a H
+        self.registradores = {chr(65 + i): Registrador() for i in range(8)}
         self.programa = {}  # Dicionário com as instruções do programa carregado
         self.ponteiro = 1  # Ponteiro para a próxima instrução
 
@@ -24,11 +25,9 @@ class MaquinaNorma:
                 self.programa[rotulo] = Instrucao(rotulo, operacao, registrador, salto, salto_se_nao)  # Adiciona a instrução ao dicionário
 
     def inicializar_registradores(self, valores):
-        for r in self.registradores:  # Percorre todos os registradores
-            if r in valores:
-                self.registradores[r].value = valores[r]  # Se existir valor para o registrador, atribui o valor
-            else:
-                self.registradores[r].value = None  # Se não existir valor para o registrador, atribui None
+        """Inicializa os registradores conforme o dicionário passado."""
+        for r in self.registradores:
+            self.registradores[r].valor = valores.get(r, 0)
 
     def executar(self):
         print(self)
@@ -37,9 +36,10 @@ class MaquinaNorma:
             if self.ponteiro not in self.programa:
                 break
 
-            self.ponteiro = self.programa[self.ponteiro].execute(self.registradores)
+            # executa a instrução apontada e atualiza o ponteiro
+            self.ponteiro = self.programa[self.ponteiro].executar(self.registradores)
             print(self)
 
     def __str__(self):
-        regs = {r: self.registradores[r].value for r in self.registradores if self.registradores[r].value is not None}
+        regs = {r: self.registradores[r].valor for r in self.registradores if self.registradores[r].valor is not None}
         return f"Registradores: {regs} | Ponteiro: {self.ponteiro} | Instrução: {self.programa[self.ponteiro] if self.ponteiro in self.programa else None}"  # Retorna uma string com os registradores, ponteiro e instrução atual
